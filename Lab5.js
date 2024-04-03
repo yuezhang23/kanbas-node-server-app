@@ -24,7 +24,7 @@ const Lab5 = (app) => {
     res.json(todos);
   });
 
-  app.get("/a5/todos/:id/descriptin/:description", (req, res) => {
+  app.get("/a5/todos/:id/description/:description", (req, res) => {
     const { id, description } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
     todo.description =description;
@@ -49,6 +49,7 @@ const Lab5 = (app) => {
     res.json(todos);
   });
 
+  
   app.delete("/a5/todos/:id", (req, res) => {
     const { id } = req.params;
     const todo = todos.find((t) => t.id === parseInt(id));
@@ -108,21 +109,20 @@ const Lab5 = (app) => {
 
 
   
-  app.get("/a5/todos", (req,res) => {
-    res.json(todos)
-  });
-
-    app.get("/a5/todos?", (req, res) => {
-      const { completed1 } = req.query;
-      if (completed1 !== undefined) {
-        const completedBool = completed1 === "true";
-        const completedTodos = todos.filter(
-          (t) => t.completed === completedBool);
+  // app.get("/a5/todos", (req,res) => {
+  // });
+  
+  app.get("/a5/todos", (req, res) => {
+    const { completed1 } = req.query;
+    if (completed1 !== undefined) {
+      const completedBool = completed1 === "true";
+      const completedTodos = todos.filter(
+        (t) => t.completed === completedBool);
         res.json(completedTodos);
         return;
       }
+      res.json(todos)
     });
-
 
 
     app.get("/a5/assignment", (req, res) => {
@@ -167,10 +167,8 @@ const Lab5 = (app) => {
         res.json(module);
       });
     
-
-      
     app.get("/a5/welcome", (req, res) => {
-      res.send("Welcome to Assignment 5 fetch really??");
+      res.send("Welcome to Assignment 5 ");
     });
     app.get("/a5/add/:a/:b", (req, res) => {
       const { a, b } = req.params;
@@ -182,6 +180,17 @@ const Lab5 = (app) => {
       const sum = parseInt(a) - parseInt(b);
       res.send(sum.toString());
     });
+    app.get("/a5/multiply/:a/:b", (req, res) => {
+      const { a, b } = req.params;
+      const product = parseFloat(a) * parseFloat(b);
+      res.send(product.toString());
+    });
+    app.get("/a5/divide/:a/:b", (req, res) => {
+      const { a, b } = req.params;
+      const quotient = parseFloat(a) / parseFloat(b);
+      res.send(quotient.toString());
+    });
+
     app.get("/a5/calculator", (req, res) => {
         const { a, b, operation } = req.query;
         let result = 0;
@@ -191,6 +200,12 @@ const Lab5 = (app) => {
             break;
           case "subtract":
             result = parseInt(a) - parseInt(b);
+            break;
+          case "multiply":
+            result = parseFloat(a) * parseFloat(b);
+            break;
+          case "divide":
+            result = parseFloat(a) / parseFloat(b);
             break;
           default:
             result = "Invalid operation";

@@ -1,6 +1,5 @@
 import db from "../Database/index.js";
 
-
 export default function CourseRoutes(app) {
   const initialCourse = {
     _id: "-1", 
@@ -42,6 +41,7 @@ export default function CourseRoutes(app) {
     res.send(courses);
   });
 
+  
   app.get("/api/courses/:courseID", (req, res) => {
     const {courseID} = req.params;
     const course = db.courses.find((item) => item._id == courseID);

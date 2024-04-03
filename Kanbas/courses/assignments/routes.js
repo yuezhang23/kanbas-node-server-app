@@ -15,7 +15,7 @@ export default function AssignmentsRoutes(app) {
       const hws = db.assignments;
       res.send(hws);
     });
-
+    
 
     app.get("/api/courses/:cid/assignments", (req, res) => {
         const { cid } = req.params;
