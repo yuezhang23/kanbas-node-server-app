@@ -41,6 +41,13 @@ export default function ModuleRoutes(app) {
     db.modules = db.modules.filter((c)=>c._id !== mID)
     res.sendStatus(204);
   });
+  
+
+  app.get("/api/modules", (req, res) => {
+    const modules = db.modules;
+    res.send(modules);
+  });
+
 
   app.get("/api/courses/:cid/modules", (req, res) => {
     const { cid } = req.params;

@@ -11,6 +11,12 @@ export default function AssignmentsRoutes(app) {
        description: "New Assignment Description" }]
     };
 
+    app.get("/api/assignments", (req, res) => {
+      const hws = db.assignments;
+      res.send(hws);
+    });
+
+
     app.get("/api/courses/:cid/assignments", (req, res) => {
         const { cid } = req.params;
         const assignments = db.assignments.map((m) => m.catalog.length > 0 ? {...m, catalog : m.catalog.filter((i) => i
