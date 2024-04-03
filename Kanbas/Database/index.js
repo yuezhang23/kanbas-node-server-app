@@ -1,0 +1,10 @@
+import courses from "./courses.js";
+import course_menu from './course_menu.js';
+import modules from "./modules.js";
+import assignments from './assignments.js';
+import users from './users.js';
+import grades from './grades.js';
+import enrollment from './enrollment.js';
+import account_menu from './account_menu.js';
+import accounts from './accounts.js';
+export default {  courses, course_menu, modules, assignments, users,grades, enrollment, account_menu ,accounts};
