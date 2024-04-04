@@ -17,11 +17,11 @@ export default function AssignmentsRoutes(app) {
     });
     
 
-    // error when not deleting newly added assginment but not with old ones.
+    // solved :error when not deleting newly added assginment but not with old ones.
     app.get("/api/courses/:cid/assignments", (req, res) => {
         const { cid } = req.params;
         const assignments = db.assignments.map((m) =>  m.catalog.length > 0 ? {...m, catalog : m.catalog.filter((i) => i
-          .course === cid)} : {}).filter((m) => Object.keys(m).length > 0);   
+          .course === cid)} : {}).filter((m) => Object.keys(m).length > 0 && m.catalog.length > 0);   
 
         if (!assignments ) {
             res.status(404)
