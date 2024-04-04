@@ -17,10 +17,12 @@ export default function AssignmentsRoutes(app) {
     });
     
 
+    // error when not deleting newly added assginment but not with old ones.
     app.get("/api/courses/:cid/assignments", (req, res) => {
         const { cid } = req.params;
-        const assignments = db.assignments.map((m) => m.catalog.length > 0 ? {...m, catalog : m.catalog.filter((i) => i
-          .course === cid)} : {}).filter((m) => m.catalog.length > 0);   
+        const assignments = db.assignments.map((m) =>  m.catalog.length > 0 ? {...m, catalog : m.catalog.filter((i) => i
+          .course === cid)} : {}).filter((m) => Object.keys(m).length > 0);   
+
         if (!assignments ) {
             res.status(404)
             .json({ message: `Unable to find the assignment with ID ${id}` });
@@ -29,7 +31,8 @@ export default function AssignmentsRoutes(app) {
             res.send(assignments);
         }
     });
-         
+     
+    
     app.get("/api/courses/:courseID/assignments/:aID", (req, res) => {
         const cid = req.params.courseID;
         const aID = req.params.aID;
@@ -74,8 +77,7 @@ export default function AssignmentsRoutes(app) {
         res.sendStatus(204);
       });
       
-      
-      
+
       app.delete("/api/courses/:cid/assignments/:aid/:sid", (req, res) => {
         const cid = req.params.cid;
         const aID = req.params.aid;
@@ -84,20 +86,16 @@ export default function AssignmentsRoutes(app) {
         const assignment = db.assignments.find((m) => m._id === aID);
         const cat = assignment.catalog.filter((i) => i.course === cid);
         res.send({...assignment, catalog : cat});
-      });
-      
+      });   
       
       app.post("/api/courses/:cid/assignments", (req, res) => {
-        const cid = req.params;
-        const cat =   { ...req.body.catalog[0], course : cid,  _id:  new Date().getTime().toString() };
-
+        const cat = {...req.body.catalog[0],  _id : new Date().getTime().toString()};
         const newHW = { 
           ...req.body,
-          _id: new Date().getTime().toString(),
-          catalog : [{...cat}]
+          _id: new Date().getTime().toString() + "01",
+          catalog : [cat]
         };
-
-        db.assignments.push(req.body);
+        db.assignments.push(newHW);
         res.send(newHW);
       });
       

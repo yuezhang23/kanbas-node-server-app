@@ -35,7 +35,7 @@ export default function CourseRoutes(app) {
     res.sendStatus(204);
   });
 
-
+  
   app.get("/api/courses", (req, res) => {
     const courses = db.courses;
     res.send(courses);
