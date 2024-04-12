@@ -1,4 +1,5 @@
-import db from "../../Database/index.js";
+import db from "../Database/index.js";
+
 
 export default function AssignmentsRoutes(app) {
     const initItem = {
@@ -87,7 +88,7 @@ export default function AssignmentsRoutes(app) {
         const cat = assignment.catalog.filter((i) => i.course === cid);
         res.send({...assignment, catalog : cat});
       });   
-      
+           
       app.post("/api/courses/:cid/assignments", (req, res) => {
         const cat = {...req.body.catalog[0],  _id : new Date().getTime().toString()};
         const newHW = { 

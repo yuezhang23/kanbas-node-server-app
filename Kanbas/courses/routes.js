@@ -13,7 +13,6 @@ export default function CourseRoutes(app) {
     image: 'init.png'
   };
 
-
   app.post("/api/courses", (req, res) => {
     const course = { ...req.body,
       _id: new Date().getTime().toString() };
