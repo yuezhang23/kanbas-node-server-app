@@ -27,6 +27,7 @@ app.use(
     )
   );
 
+
 app.use(express.json());
 
 const sessionOptions = {
@@ -52,7 +53,7 @@ AssignmentsRoutes(app);
 UserRoutes(app);
 Hello(app);
 Lab5(app);
-app.listen(process.env.PORT || 4000);     
+app.listen(4000);     
 
 
 
