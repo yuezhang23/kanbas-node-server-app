@@ -40,11 +40,7 @@ const sessionOptions = {
 
 if (process.env.NODE_ENV === "development_render") {
   sessionOptions.proxy = true;
-  sessionOptions.cookie = {
-    sameSite: 'none', // Set to 'strict' for better security
-    secure: true, // Set to 'true' if using HTTPS
-    domain: process.env.HTTP_SERVER_DOMAIN,
-  }
+  sessionOptions.cookie.domain = process.env.HTTP_SERVER_DOMAIN;
 }
 
 
