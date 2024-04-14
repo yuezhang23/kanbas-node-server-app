@@ -34,14 +34,15 @@ const sessionOptions = {
     sameSite: 'strict', // Set to 'strict' for better security
     secure: false, // Set to 'true' if using HTTPS
     httpOnly: true ,// Prevent client-side JavaScript access to the cookie
-    // domain: process.env.HTTP_SERVER_DOMAIN,
   },
 };
 
 
-if (process.env.NODE_ENV !== "development") {
+if (process.env.NODE_ENV === "development_render") {
   sessionOptions.proxy = true;
   sessionOptions.cookie = {
+    sameSite: 'none', // Set to 'strict' for better security
+    secure: true, // Set to 'true' if using HTTPS
     domain: process.env.HTTP_SERVER_DOMAIN,
   }
 }
