@@ -29,10 +29,9 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
   cookie : {
-    maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-    sameSite: 'strict', // Set to 'strict' for better security
-    secure: false, // Set to 'true' if using HTTPS
-    httpOnly: true ,// Prevent client-side JavaScript access to the cookie
+    sameSite: 'strict', 
+    secure: false, 
+    httpOnly: true ,
   },
 };
 
@@ -40,6 +39,8 @@ const sessionOptions = {
 if (process.env.NODE_ENV === "development_render") {
   sessionOptions.proxy = true;
   sessionOptions.cookie.domain = process.env.HTTP_SERVER_DOMAIN;
+  sessionOptions.cookie.sameSite ='none', 
+  sessionOptions.cookie.secure = true
 }
 
 
