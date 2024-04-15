@@ -62,7 +62,7 @@ export default function UserRoutes(app) {
       res.json(req.session["currentUser"])
     } else {
       res.status(400).json(
-        { message: "Username doesn't exist" });
+        { message: "Username/password doesn't exist or incorrect" });
     }
   };
 
