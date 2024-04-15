@@ -36,12 +36,12 @@ const sessionOptions = {
 };
 
 
-if (process.env.NODE_ENV === "development_render") {
-  sessionOptions.proxy = true;
-  sessionOptions.cookie.domain = process.env.HTTP_SERVER_DOMAIN;
-  sessionOptions.cookie.sameSite ='none', 
-  sessionOptions.cookie.secure = true
-}
+// if (process.env.NODE_ENV === "development_render") {
+//   sessionOptions.proxy = true;
+//   sessionOptions.cookie.domain = process.env.HTTP_SERVER_DOMAIN;
+//   sessionOptions.cookie.sameSite ='none', 
+//   sessionOptions.cookie.secure = true
+// }
 
 
 app.use(session(sessionOptions));
