@@ -46,9 +46,8 @@ export default function UserRoutes(app) {
         { message: "Username already taken" });
     } else {
       const currentUser = await dao.createUser(req.body);
-      console.log("signup")
       req.session["currentUser"] = currentUser;
-      console.log(req.session)
+      globalUser = currentUser;
       res.json(currentUser);
     }
   };
