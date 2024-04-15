@@ -24,7 +24,6 @@ app.use(
   })
 );
 
-
 const sessionOptions = {
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -53,6 +52,5 @@ AssignmentsRoutes(app);
 UserRoutes(app);
 Hello(app);
 Lab5(app);  
-app.listen(process.env.PORT || 4000);     
-
+app.listen(process.env.PORT || 4000);      
 
