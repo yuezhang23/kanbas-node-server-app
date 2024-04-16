@@ -14,7 +14,8 @@ export default function ModuleRoutes(app) {
 
 const createModule = async (req, res) => { 
   const { cid } = req.params;
-  const newModule = { ...req.body,
+  const { _id, ...copiedObject } = req.body;
+  const newModule = { ...copiedObject,
     course: cid, 
     mid: new Date().getTime().toString()
 };

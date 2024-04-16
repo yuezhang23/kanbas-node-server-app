@@ -11,7 +11,8 @@ export default function CourseRoutes(app) {
   // });
 
   const createCourse = async (req, res) => { 
-    const course = await dao.createCourse({...req.body, cid: new Date().getTime().toString()});
+    const { _id, ...copiedObject } = req.body;
+    const course = await dao.createCourse({...copiedObject, cid: new Date().getTime().toString()});
     res.json(course);
   };
 
