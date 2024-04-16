@@ -47,8 +47,8 @@ const updateModule = async (req, res) => {
 // });
 
 const deleteModule = async (req, res) => {
-  const mID = req.params.mid;
-  const status = await dao.deleteModule(mID);
+  const ID = req.params.id;
+  const status = await dao.deleteModule(ID);
   res.json(status);
 };
 
@@ -148,7 +148,7 @@ app.get("/api/modules", findAllModules);
 app.get("/api/courses/:cid/modules", findModulesByCourse);
 app.get("/api/courses/:courseID/modules/:moduleID", findModuleById);
 app.put("/api/courses/:cid/modules/:mid", updateModule);
-app.delete("/api/courses/:cid/modules/:mid", deleteModule);
+app.delete("/api/courses/:cid/modules/:id", deleteModule);
 }
 
                         

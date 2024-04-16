@@ -11,4 +11,4 @@ export const findModulesByCourse = (cId) => model.ModuleModel.find({course : cId
 export const findModuleById= (mId) => model.ModuleModel.findOne({mid : mId});
 export const findModuleByCredentials = (cid, mid) => model.ModuleModel.findOne({ course : cid, mid : mid });
 export const updateModule = (mId, module) =>  model.ModuleModel.updateOne({ mid: mId }, { $set: module });
-export const deleteModule = (mId) => model.ModuleModel.deleteOne({ mid: mId });
+export const deleteModule = (Id) => model.ModuleModel.deleteOne({ _id: Id });
